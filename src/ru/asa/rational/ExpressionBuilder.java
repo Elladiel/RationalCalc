@@ -85,6 +85,7 @@ public class ExpressionBuilder {
 
     /**
      * Возвращает TRUE, если в потоке строка <code>s</code>.
+     *
      * @param s
      */
     private boolean startWith(String s) {
@@ -127,14 +128,14 @@ public class ExpressionBuilder {
             if (state == null) continue;
 
             for (String operator : state) {
-                if (startWith(operator) || expression.substring(currentPosition).length() == 0) {
+                if (startWith(operator) || expression.substring(currentPosition).length() == 0 || startWith(")")) {
                     isValid = true;
                     break;
                 }
             }
         }
 
-        if (!isValid) {
+        if (isValid == false) {
             throw new ValidationException("");
         }
     }
@@ -143,6 +144,7 @@ public class ExpressionBuilder {
     /**
      * Считываем из потока обыкновенную дробь, смешанную дробь или целое число.
      * Даёшь регулярочки ^__^
+     *
      * @return
      */
     private Expression readSingle() throws Exception {
@@ -192,7 +194,6 @@ public class ExpressionBuilder {
     }
 
     /**
-     *
      * @param pattern
      * @return
      */

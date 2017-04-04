@@ -1,15 +1,5 @@
 package ru.asa.rational;
 
-/**
- * Класс представляет обыкновенную дробь(не смешанное число).
- * Cодержит методы для реализации базовых арифметических операций:
- * <ul>
- * <li>сложение;</li>
- * <li>вычитание;</li>
- * <li>умножение;</li>
- * <li>деление;</li>
- * </ul>
- */
 public class Rational {
     private int numerator;//числитель
     private int denominator;//знаменатель
@@ -20,9 +10,6 @@ public class Rational {
 
     public Rational(int numerator, int denominator) {
         this.numerator = numerator;
-        if (denominator == 0) {
-            throw new ArithmeticException("Ошибка. Знаменатель равень нулю.");
-        }
         this.denominator = denominator;
     }
 
@@ -48,20 +35,16 @@ public class Rational {
         this.denominator = 1;
     }
 
-    public int getNumerator() {
-        return numerator;
+    public Rational add(Rational rational) {
+        return new Rational(
+                this.numerator * rational.denominator + rational.numerator * this.denominator,
+                this.denominator * rational.denominator);
     }
 
-    public Rational add(Rational frac2) {
+    public Rational sub(Rational rational) {
         return new Rational(
-                this.numerator * frac2.denominator + frac2.numerator * this.denominator,
-                this.denominator * frac2.denominator);
-    }
-
-    public Rational sub(Rational frac2) {
-        return new Rational(
-                this.numerator * frac2.denominator - frac2.numerator * this.denominator,
-                this.denominator * frac2.denominator);
+                this.numerator * rational.denominator - rational.numerator * this.denominator,
+                this.denominator * rational.denominator);
     }
 
     public Rational multiply(Rational frac2) {
