@@ -71,6 +71,7 @@ public class Rational {
      * @return сокращенная дробь
      */
     public Rational reduce() {
+
         int num = this.numerator;
         int denom = this.denominator;
 
